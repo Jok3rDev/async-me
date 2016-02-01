@@ -14,7 +14,10 @@
     console.log('Le plug-in est exécuté');
     var $element = this;
     console.log($element);
-    checkAttribute($element);
+    $element.each(function(){
+      checkAttribute($element);
+      defineElement($element);
+    });
     return this;
 
     /**
@@ -23,11 +26,19 @@
      * @return booléen
      */
     function checkAttribute($element) {
+      console.log($element);
       var check = true;
-      check &= $element.data('src') === undefined;
-      check &= $element.data('src') === null;
-      console.error("L'attribut data-src n'est pas correctement formaté.");
+      check &= Boolean($element.data('src') === undefined);
+      check &= Boolean($element.data('src') != '');
+
+      if (check) {
+        console.error("L'attribut data-src n'est pas correctement formaté.");
+      }
       return check;
+    }
+
+    function defineElement($element) {
+
     }
   }
 })(window.jQuery);
