@@ -1,5 +1,5 @@
 /**
- * jQuery Aynsc Me
+ * jQuery Async Me
  * Un plug-in jQuery pour charger de manière asynchrone vos contenu multimédia.
  * http://github.com/Jok3rDev/async-me
  *
