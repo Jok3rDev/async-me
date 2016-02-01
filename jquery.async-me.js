@@ -7,7 +7,7 @@
  * Copyright 2016 Fabrice Trimech
  * https://github.com/Jok3rDev/
  */
-console.log('Test');
+
 (function($) {
 
 })(window.jQuery);
