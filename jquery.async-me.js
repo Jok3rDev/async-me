@@ -9,5 +9,7 @@
  */
 
 (function($) {
-
+  $.fn.asyncMe = function() {
+    return this;
+  }
 })(window.jQuery);
