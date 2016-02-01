@@ -14,9 +14,9 @@
     console.log('Le plug-in est exécuté');
     var $element = this;
     console.log($element);
-    $element.each(function(){
-      checkAttribute($element);
-      defineElement($element);
+    $element.each(function(key, value){
+      checkAttribute($(this));
+      defineElement(value.tagName);
     });
     return this;
 
@@ -26,7 +26,6 @@
      * @return booléen
      */
     function checkAttribute($element) {
-      console.log($element);
       var check = true;
       check &= Boolean($element.data('src') === undefined);
       check &= Boolean($element.data('src') != '');
@@ -37,8 +36,20 @@
       return check;
     }
 
-    function defineElement($element) {
+    function defineElement(tag) {
+      var tag    = tag.toLowerCase();
+      var result = [];
 
+      switch (tag) {
+        case 'img':
+        case 'iframe':
+          result['toChange'] = 'src';
+          break;
+        default:
+        console.error("L'élement du DOM définit n'est pas géré par le plug-in.");
+        result = false;
+      }
+      return result;
     }
   }
 })(window.jQuery);
