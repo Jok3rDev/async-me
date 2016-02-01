@@ -10,13 +10,24 @@
 
 (function($) {
   $.fn.asyncMe = function() {
+    'use strict';
     console.log('Le plug-in est exécuté');
     var $element = this;
     console.log($element);
+    checkAttribute($element);
     return this;
 
+    /**
+     * Vérifie si l'attribut data-src est présent et non null
+     * @param  $element L'élement du DOM sur lequel est exécuté AsyncMe
+     * @return booléen
+     */
     function checkAttribute($element) {
-      
+      var check = true;
+      check &= $element.data('src') === undefined;
+      check &= $element.data('src') === null;
+      console.error("L'attribut data-src n'est pas correctement formaté.");
+      return check;
     }
   }
 })(window.jQuery);
