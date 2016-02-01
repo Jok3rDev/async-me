@@ -14,5 +14,9 @@
     var $element = this;
     console.log($element);
     return this;
+
+    function checkAttribute($element) {
+      
+    }
   }
 })(window.jQuery);
