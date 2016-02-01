@@ -10,6 +10,9 @@
 
 (function($) {
   $.fn.asyncMe = function() {
+    console.log('Le plug-in est exécuté');
+    var $element = this;
+    console.log($element);
     return this;
   }
 })(window.jQuery);
