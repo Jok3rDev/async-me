@@ -18,6 +18,7 @@
     this
       .checkIntegrity(this.$element)
       .handlerElement(this.$element)
+      .run(this.$element, this.tagToChange)
     ;
 
 
@@ -52,6 +53,14 @@
         ret = "Une erreur est survenue.";
     }
     return console.error(ret);
+  };
+
+  AsyncMe.prototype.run = function (element, tag) {
+    var $element = element;
+
+    $element.attr(tag, $element.data('src'));
+
+    return this;
   };
 
   AsyncMe.prototype.handlerElement = function (element) {
