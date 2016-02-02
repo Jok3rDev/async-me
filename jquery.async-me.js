@@ -44,6 +44,22 @@
     return console.error(ret);
   };
 
+  AsyncMe.prototype.handlerElement = function (element) {
+    var $element = element;
+    var tag      = $element.tagName.toLowerCase();
+    var ret      = false;
+
+    switch (tag) {
+      case 'img':
+      case 'iframe':
+        ret = 'src';
+        break;
+      default:
+        this.promptError(2);
+    }
+    return ret;
+  };
+
   var old = $.fn.asyncMe;
   $.fn.asyncMe = AsyncMe;
 
