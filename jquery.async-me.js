@@ -35,6 +35,9 @@
       case 1:
         ret = "L'attribut data-src n'est pas correctement formaté.";
       break;
+      case 2:
+        ret = "L'élement du DOM définit n'est pas géré par le plug-in.";
+      break;
       default:
         ret = "Une erreur est survenue.";
     }
