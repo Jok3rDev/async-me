@@ -24,6 +24,9 @@
 
   };
 
+  AsyncMe.ERROR_NOT_ATTR = 1;
+  AsyncMe.ERROR_NOT_DOM  = 2;
+
   AsyncMe.prototype.checkIntegrity = function (element) {
     var check    = true;
     var $element = element;
@@ -32,7 +35,7 @@
     check &= Boolean($element.data('src') != '');
 
     if (check) {
-      this.promptError(1);
+      this.promptError(AsyncMe.ERROR_NOT_ATTR);
     }
 
     this.integrityStatus = check;
@@ -40,13 +43,32 @@
     return this;
   };
 
+  AsyncMe.prototype.isTimeOut = function (options) {
+    var $check = true;
+    check &= Boolean(options.timeOut != null);
+
+    this.isTimeOut = check;
+
+    return this;
+  };
+
+  AsyncMe.prototype.integrityTimeOut = function (options) {
+    var $check = true;
+    check &= Boolean(options.timeOut != null);
+    check &= Boolean(Number.isInteger(options.timeOut));
+
+    this.isTimeOut = check;
+
+    return this;
+  };
+
   AsyncMe.prototype.promptError = function (id) {
     var ret = null;
     switch (id) {
-      case 1:
+      case AsyncMe.ERROR_NOT_ATTR:
         ret = "L'attribut data-src n'est pas correctement formaté.";
       break;
-      case 2:
+      case AsyncMe.ERROR_NOT_DOM:
         ret = "L'élement du DOM définit n'est pas géré par le plug-in.";
       break;
       default:
@@ -57,8 +79,9 @@
 
   AsyncMe.prototype.run = function (element, tag) {
     var $element = element;
-
-    $element.attr(tag, $element.data('src'));
+    setTimeout(function() {
+      $element.attr(tag, $element.data('src'))
+    }, this.options.timeOut);
 
     return this;
   };
@@ -74,7 +97,7 @@
         ret = 'src';
         break;
       default:
-        this.promptError(2);
+        this.promptError(AsyncMe.ERROR_NOT_DOM);
     }
 
     this.tagToChange = ret;
@@ -99,12 +122,18 @@
   $.fn.asyncMe.Constructor = AsyncMe;
 
   $.fn.asyncMe.defaults = {
-    timeOut : 500,
+    timeOut : null,
   }
 
   $.fn.asyncMe.noConflict = function () {
     $.fn.asyncMe = old;
     return this;
   }
+
+  $(window).on('load', function() {
+    $('.async-me').each(function(){
+      $(this).asyncMe();
+    });
+  });
 
 })(window.jQuery);
