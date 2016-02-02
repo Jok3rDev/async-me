@@ -14,9 +14,16 @@
   var AsyncMe = function (element, options) {
     this.$element = $(element);
     this.options  = $.extend({}, $.fn.asyncMe.defaults, this.$element.data(), options);
+
+    this
+      .checkIntegrity(this.$element)
+      .handlerElement(this.$element)
+    ;
+
+
   };
 
-  AsyncMe.prototype.checkAttribute = function (element) {
+  AsyncMe.prototype.checkIntegrity = function (element) {
     var check    = true;
     var $element = element;
 
@@ -26,7 +33,10 @@
     if (check) {
       this.promptError(1);
     }
-    return check;
+
+    this.integrityStatus = check;
+
+    return this;
   };
 
   AsyncMe.prototype.promptError = function (id) {
@@ -46,7 +56,7 @@
 
   AsyncMe.prototype.handlerElement = function (element) {
     var $element = element;
-    var tag      = $element.tagName.toLowerCase();
+    var tag      = $element.context.tagName.toLowerCase();
     var ret      = false;
 
     switch (tag) {
@@ -57,7 +67,10 @@
       default:
         this.promptError(2);
     }
-    return ret;
+
+    this.tagToChange = ret;
+
+    return this;
   };
 
   var old = $.fn.asyncMe;
