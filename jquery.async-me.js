@@ -121,11 +121,6 @@
           that.updateAttribut($element, tag);
         });
       },
-      animate: function($element, tag) {
-        $element.animate(speed, function() {
-          that.updateAttribut($element, tag);
-        });
-      },
     };
 
 
@@ -185,9 +180,9 @@
   $.fn.asyncMe.Constructor = AsyncMe;
 
   $.fn.asyncMe.defaults = {
-    timeOut : 500,
-    effect  : 'blop',
-    speed   : 'slow',
+    timeOut : null,
+    effect  : 'fadeIn',
+    speed   : 'fast',
   }
 
   $.fn.asyncMe.noConflict = function () {
