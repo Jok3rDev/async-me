@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>AsyncMe by Jok3rDev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">AsyncMe</h1>
+      <h2 class="project-tagline">Chargement asynchrone de vos médias</h2>
+      <a href="https://github.com/Jok3rDev/async-me" class="btn">View on GitHub</a>
+      <a href="https://github.com/Jok3rDev/async-me/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Jok3rDev/async-me/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="async-me" class="anchor" href="#async-me" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Async Me</h1>
+
+<p><strong>Async Me</strong> est un plug-in JS permettant le lazy loading d'images et d'iframe Youtube.</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>spinner.png<span class="pl-pds">"</span></span> <span class="pl-e">data-src</span>=<span class="pl-s"><span class="pl-pds">"</span>votre_image<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>async-me<span class="pl-pds">"</span></span> /&gt;</pre></div>
+
+<h2>
+<a id="fonctionnement" class="anchor" href="#fonctionnement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fonctionnement</h2>
+
+<h3>
+<a id="paramètres" class="anchor" href="#param%C3%A8tres" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Paramètres</h3>
+
+<table>
+<thead>
+<tr>
+<th align="right">Attribut</th>
+<th align="right">Format</th>
+<th align="center">Default</th>
+<th align="center">Obligatoire</th>
+<th align="right">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">data-src</td>
+<td align="right"><em>string</em></td>
+<td align="center">-</td>
+<td align="center">Oui</td>
+<td align="right">Chemin du média à charger</td>
+</tr>
+<tr>
+<td align="right">data-time-out</td>
+<td align="right"><em>int</em></td>
+<td align="center">null</td>
+<td align="center">Non</td>
+<td align="right">Délai d'activation du chargment asynchrone</td>
+</tr>
+<tr>
+<td align="right">data-effect</td>
+<td align="right"><em>string</em></td>
+<td align="center">fadeIn</td>
+<td align="center">Non</td>
+<td align="right">Effet d'animation (<em>fadeIn, fadeOut, slideDown, slideUp</em>)</td>
+</tr>
+<tr>
+<td align="right">data-speed</td>
+<td align="right"><em>int, string</em></td>
+<td align="center">fast</td>
+<td align="center">Non</td>
+<td align="right">Vitesse d'éxécution de l'animation</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="avec-lattribut-data" class="anchor" href="#avec-lattribut-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Avec l'attribut data</h3>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">img</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>async-me<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>spinner.png<span class="pl-pds">"</span></span> <span class="pl-e">data-src</span>=<span class="pl-s"><span class="pl-pds">"</span>votre_image<span class="pl-pds">"</span></span> <span class="pl-e">data-time-out</span>=<span class="pl-s"><span class="pl-pds">"</span>800<span class="pl-pds">"</span></span> <span class="pl-e">data-effect</span>=<span class="pl-s"><span class="pl-pds">"</span>fadeOut<span class="pl-pds">"</span></span> <span class="pl-e">data-speed</span>=<span class="pl-s"><span class="pl-pds">"</span>900<span class="pl-pds">"</span></span> /&gt;</pre></div>
+
+<h3>
+<a id="en-jquery" class="anchor" href="#en-jquery" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>En jQuery</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>votre_element<span class="pl-pds">'</span></span>).<span class="pl-en">asyncMe</span>({
+  speed<span class="pl-k">:</span> <span class="pl-c1">900</span>
+  timeOut<span class="pl-k">:</span> <span class="pl-c1">800</span>
+  effect<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>fadeOut<span class="pl-pds">'</span></span>,
+});</pre></div>
+
+<h2>
+<a id="version" class="anchor" href="#version" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version</h2>
+
+<ul>
+<li>Version 1.0</li>
+</ul>
+
+<h2>
+<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact</h2>
+
+<h4>
+<a id="developpeur" class="anchor" href="#developpeur" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developpeur</h4>
+
+<ul>
+<li>Site Web: <a href="http://devtalk.fr">devtalk.fr</a>
+</li>
+<li>e-mail: <a href="mailto:contact@devtalk.fr">contact@devtalk.fr</a>
+</li>
+<li>Twitter: <a href="https://twitter.com/fj0ker">@fj0ker</a>
+</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Jok3rDev/async-me">AsyncMe</a> is maintained by <a href="https://github.com/Jok3rDev">Jok3rDev</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
